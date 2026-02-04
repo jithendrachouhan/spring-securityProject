@@ -1,4 +1,4 @@
-package com.jithendra.securityProject;
+package com.jithendra.securityProject.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
