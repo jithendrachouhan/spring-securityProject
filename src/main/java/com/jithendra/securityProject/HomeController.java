@@ -3,6 +3,9 @@ package com.jithendra.securityProject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
+
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 
@@ -10,7 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/health")
-    public ResponseEntity<String> healthCheck() {
-        return new ResponseEntity<>("hello my friends, how are you?!!!!!!", HttpStatus.OK);
+    public ResponseEntity<String> healthCheck(HttpServletRequest request) {
+        return new ResponseEntity<>("hello my friends, how are you?!!!!!!  " + request.getSession().getId(), HttpStatus.OK);
     }
+
 }
