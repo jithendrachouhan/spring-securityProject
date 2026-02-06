@@ -19,6 +19,9 @@ public class UserService {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    JwtService jwtService;
+
     public Users registerUser(Users user) {
         user.setPassword(new BCryptPasswordEncoder(12).encode(user.getPassword()));
         return userRepo.save(user);
@@ -28,7 +31,7 @@ public class UserService {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
             user.getUsername(), user.getPassword()));
         if (authentication.isAuthenticated()) {
-            return "User verified successfully";    
+            return jwtService.generateToken(user.getUsername());    
         } 
         return "Invalid user credentials, please try again.";
     }
